@@ -8,15 +8,15 @@ import api from '../../services/Api'
 import { useProduction } from '../../contexts/ProductContext'
 
 function Celulares(){
-  const {produtos, setProd} = useProduction()
+  const {celulares, setCelulares} = useProduction()
 
   useEffect(() =>{
     const readProduction= async (name)=>{
       const data = await api.readAll(name)
-      setProd(data)
+      setCelulares(data)
     }
     readProduction('celulares')
-  },[setProd])
+  },[setCelulares])
 
 
   return (
@@ -28,7 +28,7 @@ function Celulares(){
       </form>
       <section className='ConteinerCard'>
 
-        {produtos.map((produto) => {
+        {celulares.map((produto) => {
           return <Card produto={produto} key={produto.id}/>
         })}
       </section>

@@ -22,6 +22,11 @@ export function ProductContextProvider({children}){
   const [InvalidSenha, setInvalidSenha] = useState()
 
   const [produtos, setProd] = useState([])
+<<<<<<< HEAD
+=======
+  const [computadores, setComputadores] = useState([])
+  const [celulares, setCelulares] = useState([])
+>>>>>>> fe0850d (commit 1)
   return(
       <ProductContext.Provider value={{
         show,
@@ -42,8 +47,16 @@ export function ProductContextProvider({children}){
         InvalidSenha,
         setInvalidSenha,
         produtos,
+<<<<<<< HEAD
         setProd
 
+=======
+        setProd,
+        computadores,
+        setComputadores,
+        celulares,
+        setCelulares
+>>>>>>> fe0850d (commit 1)
       }}>
         {children}
       </ProductContext.Provider>
