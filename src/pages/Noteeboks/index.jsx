@@ -7,15 +7,15 @@ import "../../App.css"
 import api from '../../services/Api'
 import { useProduction } from '../../contexts/ProductContext'
 export default function Notebooks(){
-  const {produtos, setProd} = useProduction()
+  const {notebooks, setNotebooks} = useProduction()
 
   useEffect(() =>{
     const readProduction= async (name)=>{
       const data = await api.readAll(name)
-      setProd(data)
+      setNotebooks(data)
     }
     readProduction('notebooks')
-  },[setProd])
+  },[setNotebooks])
 
 
   return (
@@ -27,7 +27,7 @@ export default function Notebooks(){
       </form>
       <section className='ConteinerCard'>
 
-        {produtos.map((produto) => {
+        {notebooks.map((produto) => {
           return <Card produto={produto} key={produto.id}/>
         })}
       </section>
