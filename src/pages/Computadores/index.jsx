@@ -8,15 +8,15 @@ import api from '../../services/Api'
 import { useProduction } from '../../contexts/ProductContext'
 
 function Computadores(){
-  const {produtos, setProd} = useProduction()
+  const {computadores, setComputadores} = useProduction()
 
   useEffect(() =>{
     const readProduction= async (name)=>{
       const data = await api.readAll(name)
-      setProd(data)
+      setComputadores(data)
     }
     readProduction('computadores')
-  },[setProd])
+  },[setComputadores])
 
   return (
     <>
@@ -29,7 +29,7 @@ function Computadores(){
 
       <section className='ConteinerCard'>
 
-        {produtos.map((produto) => {
+        {computadores.map((produto) => {
           return <Card produto={produto} key={produto.id}/>
         })}
       </section>
