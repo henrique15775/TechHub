@@ -21,7 +21,7 @@ function Footer(){
       </main>
       <div className={Style.copyrightContainer}>
           <i className="fas fa-heart"></i>
-          <span className={Style.copyright}>Projeto de Linguagem de Script</span>
+          <span className={Style.copyright}>Projeto de Gerenciamento de Projetos e Comércio Eletrônico</span>
       </div>
     </footer>
   )

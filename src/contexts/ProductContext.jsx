@@ -10,11 +10,13 @@ export function ProductContextProvider({children}){
   const [showCadastro, setShowCadastro] = useState(false);
   const handleCloseCadastro = () => setShowCadastro(false);
 
-  const usersEmail = useRef(null)
-  const usersSenha = useRef(null)
+  var usersEmail = useRef(null)
+  var usersSenha = useRef(null)
+
+  const [userToken, setUserToken] = useState([''])
   const login = useRef(null)
 
-  const [nameLogin, setnameLogin] = useState([]);
+  const [nameLogin, setnameLogin] = useState(['login']);
 
   const [Users, setUsers] = useState([])
   const [UserNot, setUserNot] = useState()
@@ -47,7 +49,9 @@ export function ProductContextProvider({children}){
         computadores,
         setComputadores,
         celulares,
-        setCelulares
+        setCelulares,
+        userToken,
+        setUserToken
       }}>
         {children}
       </ProductContext.Provider>

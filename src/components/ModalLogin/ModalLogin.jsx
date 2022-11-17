@@ -1,28 +1,46 @@
 
 import {Form, Modal } from "react-bootstrap";
 import { useProduction } from "../../contexts/ProductContext";
-import Style from './style.module.scss'
+import Style from './style.module.scss';
+import axios from 'axios';
 
 
-
-function ModalLogin({ usersLogin}) {
-  const {show,handleClose,usersEmail,usersSenha, UserNot} = useProduction()
+function ModalLogin() {
+  const {show,setShow, handleClose,usersEmail,usersSenha,userToken, setUserToken, setnameLogin, UserNot} = useProduction()
+  //axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*' // for POST requests
+  const submitLogin = async () => {
+    console.log(usersEmail.current.value)
+    console.log(usersSenha.current.value)
+    const response = await axios.post('https://techub-smartback.herokuapp.com/api/users/auth', {
+        login: usersEmail.current.value,
+        userPassword: usersSenha.current.value
+    }
+    )
+    console.log(response)
+    
+    setnameLogin(response.data.login)
+    setUserToken(response.data.token)
+    setShow(false)
+  }
+  
   return (
     <>
       <Modal show={show} onHide={handleClose} >
         <Modal.Header closeButton>
           <img src="../img/Logo.png" alt='Logo' className={Style.logoLogin} />
         </Modal.Header>
-        <Form onSubmit={usersLogin} className={Style.form}>
-          <Modal.Body>
+        <Modal.Body>
+        <Form className={Style.form}>
+          
             <Form.Group controlId="ModalEmail">
-              <Form.Control type='text' name="email" placeholder="E-mail" required ref={usersEmail}/>
+              <Form.Control type='text' placeholder="E-mail" required ref={usersEmail}/>
             </Form.Group>
             <Form.Group controlId="ModalSenha">
-              <Form.Control type='password' name="senha" placeholder="Senha" required ref={usersSenha}/>
+              <Form.Control type='password' placeholder="Senha" required ref={usersSenha}/>
             </Form.Group>
             <p><a href="##" >Esqueceu a senha?</a></p>
             <p className={Style.alert}>{UserNot}</p>
+            </Form>
           </Modal.Body>
           <Modal.Footer>
             <div className={Style.confirm}>
@@ -30,13 +48,12 @@ function ModalLogin({ usersLogin}) {
                 className={Style.entrar}
                 variant="primary"
                 as="input"
-                type="submit"
+                onClick={submitLogin}
               >
                 Entrar
               </button>
             </div>
           </Modal.Footer>
-        </Form>
       </Modal>
     </>
   );

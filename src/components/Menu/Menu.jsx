@@ -9,7 +9,7 @@ import { useProduction } from '../../contexts/ProductContext';
 
 function Menu() {
 
-    const {setInvalidSenha,setUserNot, setShow, handleClose, handleCloseCadastro, setShowCadastro, showCadastro, usersEmail, usersSenha, login, nameLogin, setnameLogin} = useProduction()
+    const {setInvalidSenha,setUserNot, setShow, handleClose, handleCloseCadastro, setShowCadastro, showCadastro, usersEmail, usersSenha, login, nameLogin, setnameLogin, userName} = useProduction()
 
     const usuarios = localStorage.readAll()
     const clickLogin = () =>{
@@ -46,12 +46,7 @@ function Menu() {
         setUserNot('Usuario não cadastrado verifique o seu E-mail ou senha...')
       }
     }
-    useEffect(()=>{
-      if(nameLogin.length === 0){
-        setnameLogin('Login')
-      }
-    },[setnameLogin, nameLogin.length])
-
+    
     const usersCadastro = (e) =>{
       e.preventDefault();
       const password = e.target.password.value
@@ -125,9 +120,7 @@ function Menu() {
         </header>
       </div>
 
-      <ModalLogin
-        usersLogin={usersLogin}
-      />
+      <ModalLogin />
       <ModalCadastro
         showCadastro={showCadastro}
         handleCloseCadastro ={handleCloseCadastro}

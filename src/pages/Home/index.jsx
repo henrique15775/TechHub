@@ -11,19 +11,6 @@ import { Carousel } from 'react-bootstrap'
 import { useProduction } from '../../contexts/ProductContext'
 
 function Home(){
-    const {Users, setUsers} = useProduction()
-    useEffect(() => {
-      const loadData = async () => {
-        const res = await fetch('https://jsonplaceholder.typicode.com/users');
-
-        const data = await res.json();
-        setUsers(data);
-      }
-      loadData();
-    }, [setUsers]);
-
-    const usuariosStore = Users
-    localStorage.load(usuariosStore)
     return (
         <>
             <Menu/>
