@@ -92,7 +92,7 @@ function Menu() {
                   </li>
               </ul>
 
-              <span><img id="logo" src="../img/Logo.png" alt='Logo' /></span>
+              <span><img id="logo" src="../img/techub-logo.png" alt='Logo' /></span>
             </Link>
             <ul className= {Style.navegation}>
                 <Link to="/Computadores">

@@ -8,7 +8,7 @@ function ModalCadastro({usersCadastro}) {
     <>
       <Modal show={showCadastro} onHide={handleCloseCadastro} >
         <Modal.Header closeButton>
-          <img src="../img/Logo.png" alt='Logo' className={Style.logoLogin} />
+          <img src="../img/techub-logo.png" alt='Logo' className={Style.logoLogin} />
         </Modal.Header>
         <Form onSubmit={usersCadastro} className={Style.form}>
           <Modal.Body>
