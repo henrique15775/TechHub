@@ -27,7 +27,7 @@ function ModalLogin() {
     <>
       <Modal show={show} onHide={handleClose} >
         <Modal.Header closeButton>
-          <img src="../img/Logo.png" alt='Logo' className={Style.logoLogin} />
+          <img src="../img/techub-logo.png" alt='Logo' className={Style.logoLogin} />
         </Modal.Header>
         <Modal.Body>
         <Form className={Style.form}>
