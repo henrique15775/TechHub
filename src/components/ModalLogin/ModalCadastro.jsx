@@ -46,6 +46,7 @@ function ModalCadastro() {
             </Form.Group>
             <p className={Style.alert} >{InvalidSenha}</p>
           </Modal.Body>
+          </Form>
           <Modal.Footer>
             <div className={Style.confirm}>
               <button
@@ -60,7 +61,6 @@ function ModalCadastro() {
             </div>
 
           </Modal.Footer>
-        </Form>
       </Modal>
     </>
   );
