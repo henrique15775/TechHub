@@ -26,60 +26,6 @@ function Menu() {
       handleCloseCadastro()
     }
 
-    const usersLogin = (e) =>{
-      e.preventDefault();
-      const email = usersEmail.current.value
-      const senha = usersSenha.current.value
-      usersEmail.current.value = ''
-      usersSenha.current.value = ''
-      let validate = true
-      usuarios.forEach((user) =>{
-        if (email === user.email && senha === user.name){
-          validate = false
-          setnameLogin(user.username)
-          setUserNot('')
-          ToggleModal("modalLogin")
-        }
-      })
-
-      if(validate=== true){
-        setUserNot('Usuario não cadastrado verifique o seu E-mail ou senha...')
-      }
-    }
-    
-    const usersCadastro = (e) =>{
-      e.preventDefault();
-      const password = e.target.password.value
-      if(password === e.target.confSenha.value){
-        const email = e.target.email.value
-        const username = e.target.username.value
-        const dataNascimento = e.target.dataNascimento.value
-        const phone = e.target.phone.value
-        const data= {
-          email: email,
-          username: username,
-          dataNascimento: dataNascimento,
-          phone: phone,
-          password: password
-        }
-        localStorage.create(data)
-        setnameLogin(data.username)
-        clean(e)
-        setInvalidSenha('')
-        ToggleModal("modalCadastro")
-      }else{
-        setInvalidSenha('Erro!! confirmação de senha incorreta!!')
-      }
-    }
-
-    function clean(e){
-      e.target.password.value = ''
-      e.target.confSenha.value = ''
-      e.target.email.value =''
-      e.target.username.value = ''
-      e.target.dataNascimento.value = ''
-      e.target.phone.value = ''
-    }
     return(
       <>
       <div className={Style.MenuContainer}>
@@ -124,7 +70,6 @@ function Menu() {
       <ModalCadastro
         showCadastro={showCadastro}
         handleCloseCadastro ={handleCloseCadastro}
-        usersCadastro={usersCadastro}
       />
 
       </>

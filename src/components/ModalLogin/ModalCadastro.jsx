@@ -2,7 +2,7 @@ import {Form, Modal } from "react-bootstrap";
 import { useProduction } from "../../contexts/ProductContext";
 import Style from './style.module.scss'
 import axios from 'axios';
-function ModalCadastro({usersCadastro}) {
+function ModalCadastro() {
   const {showCadastro, handleCloseCadastro, InvalidSenha, usersEmail, setShow,usersSenha} = useProduction()
 
   const submitCadastro = async () => {
@@ -24,7 +24,7 @@ function ModalCadastro({usersCadastro}) {
         <Modal.Header closeButton>
           <img src="../img/techub-logo.png" alt='Logo' className={Style.logoLogin} />
         </Modal.Header>
-        <Form onSubmit={usersCadastro} className={Style.form}>
+        <Form className={Style.form}>
           <Modal.Body>
             <Form.Group controlId="ModalEmail" className={Style.input}>
               <Form.Control type="text" name="email" placeholder="E-mail" required ref={usersEmail}/>
