@@ -15,7 +15,7 @@ function Menu() {
     
     const logout = () => {
       setUserToken('')
-      setnameLogin('')
+      setnameLogin('Login')
     }
     
     const clickLogin = () =>{

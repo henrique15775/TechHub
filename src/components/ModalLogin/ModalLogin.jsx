@@ -16,7 +16,6 @@ function ModalLogin() {
         userPassword: usersSenha.current.value
     }
     )
-    console.log(response)
     
     setnameLogin(response.data.login)
     setUserToken(response.data.token)
