@@ -5,21 +5,21 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useRef } from 'react';
 function ModalCadastro() {
-  const {showCadastro, handleCloseCadastro, InvalidSenha, usersEmail, setShow,usersSenha} = useProduction()
+  const {showCadastro, handleCloseCadastro, InvalidSenha, usersEmail, setShowCadastro,usersSenha, confirmSenha} = useProduction()
 
-  var [confirmSenha, setconfirmSenha] = useRef(null)
 
   const submitCadastro = async () => {
-    
-    if(usersSenha == confirmSenha){
+    if(usersSenha.current.value == confirmSenha.current.value){
       await axios.post('https://techub-smartback.herokuapp.com/api/users', {
         login: usersEmail.current.value,
         userPassword: usersSenha.current.value,
         isAdmin: false
       }
-      )
-      setconfirmSenha(null)
-      setShow(false)
+      ).catch((error)=>{
+        console.log(error)
+        setShowCadastro(false)
+      })
+      setShowCadastro(false)
     }
   }
   
