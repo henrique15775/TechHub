@@ -7,7 +7,7 @@ import { useRef } from 'react';
 function ModalCadastro() {
   const {showCadastro, handleCloseCadastro, InvalidSenha, usersEmail, setShow,usersSenha} = useProduction()
 
-  const confirmSenha = useRef(null)
+  const [confirmSenha, setconfirmSenha] = useRef(null)
 
   const submitCadastro = async () => {
     
@@ -18,6 +18,7 @@ function ModalCadastro() {
         isAdmin: false
       }
       )
+      setconfirmSenha(null)
       setShow(false)
     }
   }
