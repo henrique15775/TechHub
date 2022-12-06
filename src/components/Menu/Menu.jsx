@@ -9,9 +9,15 @@ import { useProduction } from '../../contexts/ProductContext';
 
 function Menu() {
 
-    const {setInvalidSenha,setUserNot, setShow, handleClose, handleCloseCadastro, setShowCadastro, showCadastro, usersEmail, usersSenha, login, nameLogin, setnameLogin, userName} = useProduction()
+    const {setInvalidSenha,setUserNot, setShow, handleClose, handleCloseCadastro, setShowCadastro, showCadastro, usersEmail, usersSenha, login, nameLogin, setnameLogin, userName,userToken, setUserToken} = useProduction()
 
     const usuarios = localStorage.readAll()
+    
+    const logout = () => {
+      setUserToken('')
+      setnameLogin('')
+    }
+    
     const clickLogin = () =>{
       setShow(true);
     }
@@ -59,7 +65,11 @@ function Menu() {
                 <li id="login" className={Style.logar} >
                     <i className="fas fa-user-circle"></i>
                     <p className="cadastro" onClick={clickLogin} ref={login}>{nameLogin}/</p>
-                    <p className="cadastro" onClick={clickCadastro}>Cadastre-se</p>
+                    {userToken != '' ? (
+                      <p className="cadastro" onClick={logout}>Sair</p>
+                    ) : (
+                      <p className="cadastro" onClick={clickCadastro}>Cadastre-se</p>
+                    )}
                 </li>
             </ul>
           </nav>

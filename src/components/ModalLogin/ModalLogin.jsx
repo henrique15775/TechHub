@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function ModalLogin() {
   const {show,setShow, handleClose,usersEmail,usersSenha,userToken, setUserToken, setnameLogin, UserNot} = useProduction()
-  //axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*' // for POST requests
+  
   const submitLogin = async () => {
     console.log(usersEmail.current.value)
     console.log(usersSenha.current.value)

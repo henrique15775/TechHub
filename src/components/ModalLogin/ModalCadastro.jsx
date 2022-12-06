@@ -2,18 +2,23 @@ import {Form, Modal } from "react-bootstrap";
 import { useProduction } from "../../contexts/ProductContext";
 import Style from './style.module.scss'
 import axios from 'axios';
+import { useState } from 'react';
 function ModalCadastro() {
   const {showCadastro, handleCloseCadastro, InvalidSenha, usersEmail, setShow,usersSenha} = useProduction()
 
+  const confirmSenha = useState()
+
   const submitCadastro = async () => {
     
-    await axios.post('https://techub-smartback.herokuapp.com/api/users', {
+    if(usersSenha == confirmSenha){
+      await axios.post('https://techub-smartback.herokuapp.com/api/users', {
         login: usersEmail.current.value,
         userPassword: usersSenha.current.value,
         isAdmin: false
+      }
+      )
+      setShow(false)
     }
-    )
-    setShow(false)
   }
   
 
@@ -29,20 +34,11 @@ function ModalCadastro() {
             <Form.Group controlId="ModalEmail" className={Style.input}>
               <Form.Control type="text" name="email" placeholder="E-mail" required ref={usersEmail}/>
             </Form.Group>
-            <Form.Group controlId="ModalUser">
-              <Form.Control type="text" name="username" placeholder="Nome de usuario"/>
-            </Form.Group>
-            <Form.Group controlId="ModalDate">
-              <Form.Control type="text" name="dataNascimento" placeholder="Data de nascimento xx/xx/xxxx" pattern="\d{1,2}/\d{1,2}/\d{4}"/>
-            </Form.Group>
-            <Form.Group controlId="ModalPhone">
-              <Form.Control type="text" name="phone" placeholder="telefone (xx) xxxx-xxxx" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4}"/>
-            </Form.Group>
             <Form.Group controlId="ModalSenha">
               <Form.Control type="password" name="password" placeholder="Senha" required ref={usersSenha} />
             </Form.Group>
             <Form.Group controlId="ModalConfirmeSenha">
-              <Form.Control type="password" name="confSenha" placeholder="Confirme sua senha" />
+              <Form.Control type="password" name="confSenha" placeholder="Confirme sua senha" required ref={confirmSenha} />
             </Form.Group>
             <p className={Style.alert} >{InvalidSenha}</p>
           </Modal.Body>
