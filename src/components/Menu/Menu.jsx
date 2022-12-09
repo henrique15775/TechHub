@@ -9,9 +9,15 @@ import { useProduction } from '../../contexts/ProductContext';
 
 function Menu() {
 
-    const {setInvalidSenha,setUserNot, setShow, handleClose, handleCloseCadastro, setShowCadastro, showCadastro, usersEmail, usersSenha, login, nameLogin, setnameLogin, userName} = useProduction()
+    const {setInvalidSenha,setUserNot, setShow, handleClose, handleCloseCadastro, setShowCadastro, showCadastro, usersEmail, usersSenha, login, nameLogin, setnameLogin, userName,userToken, setUserToken} = useProduction()
 
     const usuarios = localStorage.readAll()
+    
+    const logout = () => {
+      setUserToken('')
+      setnameLogin('Login')
+    }
+    
     const clickLogin = () =>{
       setShow(true);
     }
@@ -26,60 +32,6 @@ function Menu() {
       handleCloseCadastro()
     }
 
-    const usersLogin = (e) =>{
-      e.preventDefault();
-      const email = usersEmail.current.value
-      const senha = usersSenha.current.value
-      usersEmail.current.value = ''
-      usersSenha.current.value = ''
-      let validate = true
-      usuarios.forEach((user) =>{
-        if (email === user.email && senha === user.name){
-          validate = false
-          setnameLogin(user.username)
-          setUserNot('')
-          ToggleModal("modalLogin")
-        }
-      })
-
-      if(validate=== true){
-        setUserNot('Usuario não cadastrado verifique o seu E-mail ou senha...')
-      }
-    }
-    
-    const usersCadastro = (e) =>{
-      e.preventDefault();
-      const password = e.target.password.value
-      if(password === e.target.confSenha.value){
-        const email = e.target.email.value
-        const username = e.target.username.value
-        const dataNascimento = e.target.dataNascimento.value
-        const phone = e.target.phone.value
-        const data= {
-          email: email,
-          username: username,
-          dataNascimento: dataNascimento,
-          phone: phone,
-          password: password
-        }
-        localStorage.create(data)
-        setnameLogin(data.username)
-        clean(e)
-        setInvalidSenha('')
-        ToggleModal("modalCadastro")
-      }else{
-        setInvalidSenha('Erro!! confirmação de senha incorreta!!')
-      }
-    }
-
-    function clean(e){
-      e.target.password.value = ''
-      e.target.confSenha.value = ''
-      e.target.email.value =''
-      e.target.username.value = ''
-      e.target.dataNascimento.value = ''
-      e.target.phone.value = ''
-    }
     return(
       <>
       <div className={Style.MenuContainer}>
@@ -92,7 +44,7 @@ function Menu() {
                   </li>
               </ul>
 
-              <span><img id="logo" src="../img/Logo.png" alt='Logo' /></span>
+              <span><img id="logo" src="../img/techub-logo.png" alt='Logo' /></span>
             </Link>
             <ul className= {Style.navegation}>
                 <Link to="/Computadores">
@@ -113,7 +65,11 @@ function Menu() {
                 <li id="login" className={Style.logar} >
                     <i className="fas fa-user-circle"></i>
                     <p className="cadastro" onClick={clickLogin} ref={login}>{nameLogin}/</p>
-                    <p className="cadastro" onClick={clickCadastro}>Cadastre-se</p>
+                    {userToken != '' ? (
+                      <p className="cadastro" onClick={logout}>Sair</p>
+                    ) : (
+                      <p className="cadastro" onClick={clickCadastro}>Cadastre-se</p>
+                    )}
                 </li>
             </ul>
           </nav>
@@ -124,7 +80,6 @@ function Menu() {
       <ModalCadastro
         showCadastro={showCadastro}
         handleCloseCadastro ={handleCloseCadastro}
-        usersCadastro={usersCadastro}
       />
 
       </>

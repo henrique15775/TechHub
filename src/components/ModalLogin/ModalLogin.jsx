@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function ModalLogin() {
   const {show,setShow, handleClose,usersEmail,usersSenha,userToken, setUserToken, setnameLogin, UserNot} = useProduction()
-  //axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*' // for POST requests
+  
   const submitLogin = async () => {
     console.log(usersEmail.current.value)
     console.log(usersSenha.current.value)
@@ -16,7 +16,6 @@ function ModalLogin() {
         userPassword: usersSenha.current.value
     }
     )
-    console.log(response)
     
     setnameLogin(response.data.login)
     setUserToken(response.data.token)
@@ -27,7 +26,7 @@ function ModalLogin() {
     <>
       <Modal show={show} onHide={handleClose} >
         <Modal.Header closeButton>
-          <img src="../img/Logo.png" alt='Logo' className={Style.logoLogin} />
+          <img src="../img/techub-logo.png" alt='Logo' className={Style.logoLogin} />
         </Modal.Header>
         <Modal.Body>
         <Form className={Style.form}>

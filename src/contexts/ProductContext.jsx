@@ -12,11 +12,11 @@ export function ProductContextProvider({children}){
 
   var usersEmail = useRef(null)
   var usersSenha = useRef(null)
-
+  var confirmSenha = useRef(null)
   const [userToken, setUserToken] = useState([''])
   const login = useRef(null)
 
-  const [nameLogin, setnameLogin] = useState(['login']);
+  const [nameLogin, setnameLogin] = useState(['Login']);
 
   const [Users, setUsers] = useState([])
   const [UserNot, setUserNot] = useState()
@@ -51,7 +51,8 @@ export function ProductContextProvider({children}){
         celulares,
         setCelulares,
         userToken,
-        setUserToken
+        setUserToken,
+        confirmSenha
       }}>
         {children}
       </ProductContext.Provider>

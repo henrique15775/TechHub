@@ -1,37 +1,50 @@
 import {Form, Modal } from "react-bootstrap";
 import { useProduction } from "../../contexts/ProductContext";
 import Style from './style.module.scss'
-function ModalCadastro({usersCadastro}) {
-  const {showCadastro, handleCloseCadastro, InvalidSenha} = useProduction()
+import axios from 'axios';
+import { useState } from 'react';
+import { useRef } from 'react';
+function ModalCadastro() {
+  const {showCadastro, handleCloseCadastro, InvalidSenha, usersEmail, setShowCadastro,usersSenha, confirmSenha} = useProduction()
+
+
+  const submitCadastro = async () => {
+    if(usersSenha.current.value == confirmSenha.current.value){
+      await axios.post('https://techub-smartback.herokuapp.com/api/users', {
+        login: usersEmail.current.value,
+        userPassword: usersSenha.current.value,
+        isAdmin: false
+      }
+      ).catch((error)=>{
+        console.log(error)
+        setShowCadastro(false)
+      })
+      setShowCadastro(false)
+    }
+  }
+  
+
 
   return (
     <>
       <Modal show={showCadastro} onHide={handleCloseCadastro} >
         <Modal.Header closeButton>
-          <img src="../img/Logo.png" alt='Logo' className={Style.logoLogin} />
+          <img src="../img/techub-logo.png" alt='Logo' className={Style.logoLogin} />
         </Modal.Header>
-        <Form onSubmit={usersCadastro} className={Style.form}>
+        <Form className={Style.form}>
           <Modal.Body>
             <Form.Group controlId="ModalEmail" className={Style.input}>
-              <Form.Control type="text" name="email" placeholder="E-mail"/>
-            </Form.Group>
-            <Form.Group controlId="ModalUser">
-              <Form.Control type="text" name="username" placeholder="Nome de usuario"/>
-            </Form.Group>
-            <Form.Group controlId="ModalDate">
-              <Form.Control type="text" name="dataNascimento" placeholder="Data de nascimento xx/xx/xxxx" pattern="\d{1,2}/\d{1,2}/\d{4}"/>
-            </Form.Group>
-            <Form.Group controlId="ModalPhone">
-              <Form.Control type="text" name="phone" placeholder="telefone (xx) xxxx-xxxx" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4}"/>
+              <Form.Control type="text" name="email" placeholder="E-mail" required ref={usersEmail}/>
             </Form.Group>
             <Form.Group controlId="ModalSenha">
-              <Form.Control type="password" name="password" placeholder="Senha" />
+              <Form.Control type="password" name="password" placeholder="Senha" required ref={usersSenha} />
             </Form.Group>
             <Form.Group controlId="ModalConfirmeSenha">
-              <Form.Control type="password" name="confSenha" placeholder="Confirme sua senha" />
+              <Form.Control type="password" name="confSenha" placeholder="Confirme sua senha" required ref={confirmSenha} />
             </Form.Group>
             <p className={Style.alert} >{InvalidSenha}</p>
           </Modal.Body>
+          </Form>
           <Modal.Footer>
             <div className={Style.confirm}>
               <button
@@ -39,13 +52,13 @@ function ModalCadastro({usersCadastro}) {
                 variant="primary"
                 as="input"
                 type="submit"
+                onClick={submitCadastro}
               >
-                Entrar
+                Cadastrar
               </button>
             </div>
 
           </Modal.Footer>
-        </Form>
       </Modal>
     </>
   );
