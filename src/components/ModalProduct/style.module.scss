@@ -1,0 +1,94 @@
+.logoLogin{
+  width: 150px;
+  height: 150px;
+  align-self: center;
+  margin-top: 20px;
+}
+
+
+
+.confirm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .entrar{
+    width: 50%;
+    height: 35px;
+    margin: 20px 0 0 0;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color:#6B8067;
+    color: white;
+    outline: none;
+    border: none;
+}
+
+}
+
+  input{
+    height: 2.758rem;
+    font-size: .89rem;
+    border-radius: .75rem;
+  }
+  p{
+    font-size: .75rem;
+  }
+  .alert{
+    color: rgb(214, 11, 11);
+    animation: treme 0.19s;
+    animation-iteration-count: 3;
+  }
+
+  .valores{
+    display: flex;
+    flex-direction: column;
+    gap: .1rem;
+    margin-top: 10px;
+    align-self: flex-start;
+    overflow: hidden;
+    height: 30%;
+
+    h6{
+      font-size: 15px;
+      margin: 0;
+    }
+    span{
+      font-size: 15px;
+    }
+    p{
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  }
+
+  img{
+    width: 420px;
+    height: 350px;
+  }
+
+  button{
+    position: relative;
+    color: white;
+    background-color: #6B8067;
+    height: 30px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    .close{
+      width: 12.5%;
+      margin-right: 0;
+    }
+
+    .buy{
+      padding:10px;
+      width:150px;
+      margin:25px;
+    }
+
+  }
+
+
+
