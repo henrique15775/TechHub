@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Footer from '../../components/Footer'
 import Card from '../../components/Card/Card'
 import Menu from '../../components/Menu/Menu'
-
-import ModalProduct from '../../components/ModalProduct/ModalProduct'
 import "../../App.css"
 import api from '../../services/Api'
 import { useProduction } from '../../contexts/ProductContext'
 
 function Computadores(){
-  const {computadores, setComputadores,showProductId} = useProduction()
+  const {computadores, setComputadores} = useProduction()
 
 
   useEffect(() =>{

@@ -2,8 +2,6 @@ import {Form, Modal } from "react-bootstrap";
 import { useProduction } from "../../contexts/ProductContext";
 import Style from './style.module.scss'
 import axios from 'axios';
-import { useState } from 'react';
-import { useRef } from 'react';
 function ModalCadastro() {
   const {showCadastro, handleCloseCadastro, InvalidSenha, usersEmail, setShowCadastro,usersSenha, confirmSenha} = useProduction()
 

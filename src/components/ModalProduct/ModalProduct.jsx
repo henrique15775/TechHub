@@ -24,6 +24,7 @@ function ModalProduct({product}) {
                         </div>
         </Modal.Body>
           <Modal.Footer>
+          <button type="submit" name="addcart" id="buyButton" class="buy">Adicionar ao carrinho</button>
           <button type="submit" name="addcart" id="addcart">Comprar</button>
           </Modal.Footer>
       </Modal>
