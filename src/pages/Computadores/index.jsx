@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../../components/Footer'
 import Card from '../../components/Card/Card'
 import Menu from '../../components/Menu/Menu'
 
+import ModalProduct from '../../components/ModalProduct/ModalProduct'
 import "../../App.css"
 import api from '../../services/Api'
 import { useProduction } from '../../contexts/ProductContext'
 
 function Computadores(){
-  const {computadores, setComputadores} = useProduction()
+  const {computadores, setComputadores,showProductId} = useProduction()
+
 
   useEffect(() =>{
     const readProduction= async (name)=>{
@@ -30,8 +32,12 @@ function Computadores(){
       <section className='ConteinerCard'>
 
         {computadores.map((produto) => {
-          return <Card produto={produto} key={produto.id}/>
+          return <>
+                  <Card produto={produto} key={produto.id}/>
+              </>
         })}
+
+
       </section>
       <Footer/>
     </>
