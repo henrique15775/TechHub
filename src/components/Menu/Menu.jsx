@@ -64,12 +64,18 @@ function Menu() {
                 </Link>
                 <li id="login" className={Style.logar} >
                     <i className="fas fa-user-circle"></i>
-                    <p className="cadastro" onClick={userToken !== '' ? clickLogin : null} ref={login}>{nameLogin}/</p>
                     {userToken != '' ? (
+                      <>
+                      <p className="cadastro">{nameLogin}/</p>
                       <p className="cadastro" onClick={logout}>Sair</p>
+                      </>
                     ) : (
+                      <>
+                      <p className="cadastro" onClick={clickLogin} ref={login}>Entrar/</p>
                       <p className="cadastro" onClick={clickCadastro}>Cadastre-se</p>
+                      </>
                     )}
+                    
                 </li>
             </ul>
           </nav>
